@@ -27,15 +27,39 @@ for (let i = 0; i < 5; i++) {
 document.querySelector('#stars').innerHTML = `${stars}`;
 const theStars = document.querySelectorAll('.star__logo');
 
+const handleMouseOut = s => {
+	const timer = setTimeout(() => {
+		if (s.dataset.id < 4) {
+			let nextStar = Number(s.dataset.id) + 1;
+			let nextStarElement = theStars[nextStar];
+			if (nextStarElement.classList.contains('star__logo--hovered')) {
+				return;
+			}
+		}
+		s.classList.remove('star__logo--hovered');
+	}, 500);
+};
+
 theStars.forEach(s =>
 	s.addEventListener('mouseover', () => {
+		//console.log('over');
+		let precedingStar;
+		let precedingStarElement;
 		if (s.dataset.id > 0) {
-			let precedingStar = s.dataset.id - 1;
-			let precedingStarElement = theStars[precedingStar];
+			precedingStar = s.dataset.id - 1;
+			precedingStarElement = theStars[precedingStar];
 			if (!precedingStarElement.classList.contains('star__logo--hovered')) {
 				return;
 			}
 		}
 		s.classList.add('star__logo--hovered');
+		if (precedingStarElement)
+			precedingStarElement.removeEventListener('mouseleave', handleMouseOut);
 	})
 );
+
+theStars.forEach(s => {
+	s.addEventListener('mouseleave', () => {
+		handleMouseOut(s);
+	});
+});
