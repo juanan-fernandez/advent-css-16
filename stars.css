@@ -1,19 +1,20 @@
 #stars {
 	display: flex;
 	justify-content: space-between;
-	width: 500px;
+	width: 550px;
 }
 
 .star__logo {
-	width: 4rem;
+	width: 5rem;
 }
 
 .star__logo path {
 	fill: none;
 	stroke: #808080;
+	stroke-width: 10;
 }
 
-.star__logo_over path {
+.star__logo--hovered path {
 	fill: #ffd200;
 	stroke: none;
 }
