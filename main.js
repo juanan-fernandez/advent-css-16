@@ -41,8 +41,7 @@ const handleMouseOut = s => {
 };
 
 theStars.forEach(s =>
-	s.addEventListener('mouseover', () => {
-		//console.log('over');
+	s.addEventListener('mouseenter', () => {
 		let precedingStar;
 		let precedingStarElement;
 		if (s.dataset.id > 0) {
@@ -53,8 +52,6 @@ theStars.forEach(s =>
 			}
 		}
 		s.classList.add('star__logo--hovered');
-		if (precedingStarElement)
-			precedingStarElement.removeEventListener('mouseleave', handleMouseOut);
 	})
 );
 
